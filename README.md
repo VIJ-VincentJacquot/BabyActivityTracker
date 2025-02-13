@@ -4,6 +4,8 @@
 
 BabyActivityTracker is an application designed to help parents track and monitor their baby's activities. This tool aims to provide a convenient way to record and analyze various aspects of a baby's daily routine, such as feeding times, sleep patterns, diaper changes, and more.
 
+Mobile application and webapp versions available. 
+
 ## Features
 
 - **Activity Tracking**: Record and monitor different activities like feeding, sleeping, and diaper changes.
@@ -18,7 +20,7 @@ BabyActivityTracker is an application designed to help parents track and monitor
 Before you begin, ensure you have met the following requirements:
 
 - [Node.js](https://nodejs.org/) installed on your machine.
-- [Expo CLI](https://docs.expo.dev/get-started/installation/) for managing and building the project.
+- [Expo CLI](https://docs.expo.dev/get-started/installation/) for managing and building the project (npm install -g expo-cli)
 
 ### Installation
 
@@ -34,9 +36,10 @@ npm install
 
 Usage
 1. Start the development server:
-npm start
+npm start (nox expo start --clear) 
 
 2. Follow the instructions in the terminal to open the app in an emulator or on your physical device using the Expo Go app.
+
 
 Contributing
 Contributions are welcome! Please follow these steps:
