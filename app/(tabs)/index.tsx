@@ -113,15 +113,17 @@ export default function TimelineScreen() {
                   ]}
                   onPress={() => setSelectedActivity(activity.id)}>
                   <View style={styles.activityContent}>
-                    <Ionicons
-                      name={getActivityIcon(activity.type)}
-                      size={16}
-                      color="white"
-                    />
-                    <Text style={styles.activityTime}>
-                      {formatTime(activity.startTime)}
-                      {activity.endTime && ` - ${formatTime(activity.endTime)}`}
-                    </Text>
+                    <View style={styles.activityHeader}>
+                      <Ionicons
+                        name={getActivityIcon(activity.type)}
+                        size={16}
+                        color="white"
+                      />
+                      <Text style={styles.activityTime}>
+                        {formatTime(activity.startTime)}
+                        {activity.endTime && ` - ${formatTime(activity.endTime)}`}
+                      </Text>
+                    </View>
                     {activity.sides && (
                       <Text style={styles.activityDetail}>
                         Sides: {activity.sides.map(s => s.side).join(' → ')}
@@ -225,21 +227,27 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 2,
+    minHeight: 40,
   },
   activityContent: {
     flex: 1,
+    justifyContent: 'space-between',
+  },
+  activityHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
   },
   activityTime: {
     color: 'white',
     fontSize: 12,
     fontWeight: '600',
-    marginTop: 4,
   },
   activityDetail: {
     color: 'white',
     fontSize: 12,
     opacity: 0.9,
-    marginTop: 2,
+    marginTop: 4,
   },
   modalOverlay: {
     flex: 1,
