@@ -84,6 +84,24 @@ export default function TimelineScreen() {
     ));
   };
 
+  const getActivityTitle = (activity: any) => {
+    let title = formatTime(activity.startTime);
+    if (activity.endTime) {
+      title += ` - ${formatTime(activity.endTime)}`;
+    }
+    
+    switch (activity.type) {
+      case 'feed':
+        return `${title} · Feeding`;
+      case 'sleep':
+        return `${title} · Sleep`;
+      case 'diaper':
+        return `${title} · ${activity.diaperType.charAt(0).toUpperCase() + activity.diaperType.slice(1)} diaper`;
+      default:
+        return title;
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
       {groupActivitiesByDate().map(([date, dayActivities]) => (
@@ -119,19 +137,13 @@ export default function TimelineScreen() {
                         size={16}
                         color="white"
                       />
-                      <Text style={styles.activityTime}>
-                        {formatTime(activity.startTime)}
-                        {activity.endTime && ` - ${formatTime(activity.endTime)}`}
+                      <Text style={styles.activityTime} numberOfLines={1}>
+                        {getActivityTitle(activity)}
                       </Text>
                     </View>
                     {activity.sides && (
                       <Text style={styles.activityDetail}>
                         Sides: {activity.sides.map(s => s.side).join(' → ')}
-                      </Text>
-                    )}
-                    {activity.diaperType && (
-                      <Text style={styles.activityDetail}>
-                        Type: {activity.diaperType}
                       </Text>
                     )}
                   </View>
@@ -237,11 +249,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
+    flex: 1,
   },
   activityTime: {
     color: 'white',
     fontSize: 12,
     fontWeight: '600',
+    flex: 1,
   },
   activityDetail: {
     color: 'white',
